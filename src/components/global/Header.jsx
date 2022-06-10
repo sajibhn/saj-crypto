@@ -14,7 +14,7 @@ const drawerWidth = 240;
 
 export default function PermanentDrawerLeft() {
     return (
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ display: 'flex', maxWidth: '1600px' }}>
             <Drawer
                 sx={{
                     width: drawerWidth,
@@ -69,6 +69,7 @@ export default function PermanentDrawerLeft() {
                     </ListItem>
                 </List>
             </Drawer>
+
         </Box>
     );
 }
