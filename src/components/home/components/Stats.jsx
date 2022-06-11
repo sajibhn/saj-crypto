@@ -2,8 +2,19 @@ import { CurrencyExchange } from '@mui/icons-material'
 import { Box, Grid, Paper, Typography } from '@mui/material'
 import { Container, styled } from '@mui/system'
 import React from 'react'
+import { useGetCryptosQuery } from '../../../services/cryptoApi'
+import millify from 'millify'
+import CurrencyBitcoinOutlinedIcon from '@mui/icons-material/CurrencyBitcoinOutlined';
+import ChangeCircleOutlinedIcon from '@mui/icons-material/ChangeCircleOutlined';
+import BrokenImageOutlinedIcon from '@mui/icons-material/BrokenImageOutlined';
+import SurroundSoundOutlinedIcon from '@mui/icons-material/SurroundSoundOutlined';
+import StoreOutlinedIcon from '@mui/icons-material/StoreOutlined';
 
 const Stats = () => {
+    const { data, isFetching } = useGetCryptosQuery();
+    const globalStats = data?.data?.stats;
+
+    if (isFetching) return 'Loading....'
     return (
         <Box>
             <Container>
@@ -28,7 +39,7 @@ const Stats = () => {
                                         fontSize: 14,
                                     }}
                                 >
-                                    12,576
+                                    {globalStats.total}
                                 </Typography>
                             </StatisticBox>
                         </Paper>
@@ -36,21 +47,21 @@ const Stats = () => {
                     <Grid item xl={4} md={6} sm={12}>
                         <Paper sx={{ textAlign: "center" }} >
                             <StatisticBox>
-                                <CurrencyExchange fontSize='large' sx={{ marginBottom: 1 }} />
+                                <CurrencyBitcoinOutlinedIcon fontSize='large' sx={{ marginBottom: 1 }} />
                                 <Typography variant='h6' component="h3" gutterBottom
                                     sx={{
                                         fontSize: 16,
                                         fontWeight: 400
                                     }}
                                 >
-                                    Total Cryptocurrencies
+                                    Total Coins
                                 </Typography>
                                 <Typography variant='h6'
                                     sx={{
                                         fontSize: 14,
                                     }}
                                 >
-                                    12,576
+                                    {globalStats.totalCoins}
                                 </Typography>
                             </StatisticBox>
                         </Paper>
@@ -58,21 +69,21 @@ const Stats = () => {
                     <Grid item xl={4} md={6} sm={12}>
                         <Paper sx={{ textAlign: "center" }} >
                             <StatisticBox>
-                                <CurrencyExchange fontSize='large' sx={{ marginBottom: 1 }} />
+                                <ChangeCircleOutlinedIcon fontSize='large' sx={{ marginBottom: 1 }} />
                                 <Typography variant='h6' component="h3" gutterBottom
                                     sx={{
                                         fontSize: 16,
                                         fontWeight: 400
                                     }}
                                 >
-                                    Total Cryptocurrencies
+                                    Total Exchanges
                                 </Typography>
                                 <Typography variant='h6'
                                     sx={{
                                         fontSize: 14,
                                     }}
                                 >
-                                    12,576
+                                    {millify(globalStats.totalExchanges)}
                                 </Typography>
                             </StatisticBox>
                         </Paper>
@@ -80,21 +91,21 @@ const Stats = () => {
                     <Grid item xl={4} md={6} sm={12}>
                         <Paper sx={{ textAlign: "center" }} >
                             <StatisticBox>
-                                <CurrencyExchange fontSize='large' sx={{ marginBottom: 1 }} />
+                                <BrokenImageOutlinedIcon fontSize='large' sx={{ marginBottom: 1 }} />
                                 <Typography variant='h6' component="h3" gutterBottom
                                     sx={{
                                         fontSize: 16,
                                         fontWeight: 400
                                     }}
                                 >
-                                    Total Cryptocurrencies
+                                    Total Market Cap
                                 </Typography>
                                 <Typography variant='h6'
                                     sx={{
                                         fontSize: 14,
                                     }}
                                 >
-                                    12,576
+                                    {millify(globalStats.totalMarketCap)}
                                 </Typography>
                             </StatisticBox>
                         </Paper>
@@ -102,21 +113,21 @@ const Stats = () => {
                     <Grid item xl={4} md={6} sm={12}>
                         <Paper sx={{ textAlign: "center" }} >
                             <StatisticBox>
-                                <CurrencyExchange fontSize='large' sx={{ marginBottom: 1 }} />
+                                <SurroundSoundOutlinedIcon fontSize='large' sx={{ marginBottom: 1 }} />
                                 <Typography variant='h6' component="h3" gutterBottom
                                     sx={{
                                         fontSize: 16,
                                         fontWeight: 400
                                     }}
                                 >
-                                    Total Cryptocurrencies
+                                    Total 24h Volume
                                 </Typography>
                                 <Typography variant='h6'
                                     sx={{
                                         fontSize: 14,
                                     }}
                                 >
-                                    12,576
+                                    {millify(globalStats.total24hVolume)}
                                 </Typography>
                             </StatisticBox>
                         </Paper>
@@ -124,25 +135,26 @@ const Stats = () => {
                     <Grid item xl={4} md={6} sm={12}>
                         <Paper sx={{ textAlign: "center" }} >
                             <StatisticBox>
-                                <CurrencyExchange fontSize='large' sx={{ marginBottom: 1 }} />
+                                <StoreOutlinedIcon fontSize='large' sx={{ marginBottom: 1 }} />
                                 <Typography variant='h6' component="h3" gutterBottom
                                     sx={{
                                         fontSize: 16,
                                         fontWeight: 400
                                     }}
                                 >
-                                    Total Cryptocurrencies
+                                    Total Markets
                                 </Typography>
                                 <Typography variant='h6'
                                     sx={{
                                         fontSize: 14,
                                     }}
                                 >
-                                    12,576
+                                    {millify(globalStats.totalMarkets)}
                                 </Typography>
                             </StatisticBox>
                         </Paper>
                     </Grid>
+
                 </Grid>
             </Container>
         </Box>
