@@ -1,23 +1,21 @@
 import { Box, Container, Toolbar, Typography } from '@mui/material'
 import React from 'react'
-import CryptoCurrency from '../reusable/CryptoCurrency'
+import NewsCard from '../reusable/NewsCard'
 
-const CryptoCurrencies = () => {
+const News = () => {
     return (
-
-        <Box component="main"
-            sx={{ flexGrow: 1, p: 3 }}
-        >
+        <Box
+            sx={{ flexGrow: 1, p: 3 }}>
             <Toolbar />
             <Container>
                 <Typography variant='h4' component="h2" marginBottom={8}>
-                    Discover Crypto Currencies
+                    Discover Latest Crypto News
                 </Typography>
 
-                <CryptoCurrency />
+                <NewsCard />
             </Container>
         </Box>
     )
 }
 
-export default CryptoCurrencies
+export default News

@@ -9,6 +9,8 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import { Article, CurrencyExchange, Home, LocalAtm } from '@mui/icons-material';
+import { Link } from "react-router-dom";
+import { styled } from '@mui/system';
 
 const drawerWidth = 240;
 
@@ -32,44 +34,55 @@ export default function PermanentDrawerLeft() {
                 </List>
                 <Divider />
                 <List>
-                    <ListItem disablePadding>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                <Home />
-                            </ListItemIcon>
-                            <ListItemText primary={"Home"} />
-                        </ListItemButton>
-                    </ListItem>
+                    <Navaigation to="/">
+                        <ListItem disablePadding>
+                            <ListItemButton>
+                                <ListItemIcon>
+                                    <Home />
+                                </ListItemIcon>
+                                <ListItemText primary={"Home"} />
+                            </ListItemButton>
+                        </ListItem>
+                    </Navaigation>
 
-                    <ListItem disablePadding>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                <LocalAtm />
-                            </ListItemIcon>
-                            <ListItemText primary={"Cryptocurrencies"} />
-                        </ListItemButton>
-                    </ListItem>
+                    <Navaigation to="/cryptocurrencies">
+                        <ListItem disablePadding>
+                            <ListItemButton>
+                                <ListItemIcon>
+                                    <LocalAtm />
+                                </ListItemIcon>
+                                <ListItemText primary={"Cryptocurrencies"} />
+                            </ListItemButton>
+                        </ListItem>
+                    </Navaigation>
+                    <Navaigation to="/exchanges">
+                        <ListItem disablePadding>
+                            <ListItemButton>
+                                <ListItemIcon>
+                                    <CurrencyExchange />
+                                </ListItemIcon>
+                                <ListItemText primary={"Exchanges"} />
+                            </ListItemButton>
+                        </ListItem>
+                    </Navaigation>
 
-                    <ListItem disablePadding>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                <CurrencyExchange />
-                            </ListItemIcon>
-                            <ListItemText primary={"Exchanges"} />
-                        </ListItemButton>
-                    </ListItem>
-
-                    <ListItem disablePadding>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                <Article />
-                            </ListItemIcon>
-                            <ListItemText primary={"News"} />
-                        </ListItemButton>
-                    </ListItem>
+                    <Navaigation to="/news">
+                        <ListItem disablePadding>
+                            <ListItemButton>
+                                <ListItemIcon>
+                                    <Article />
+                                </ListItemIcon>
+                                <ListItemText primary={"News"} />
+                            </ListItemButton>
+                        </ListItem>
+                    </Navaigation>
                 </List>
             </Drawer>
 
         </Box>
     );
 }
+
+const Navaigation = styled(Link)({
+    color: "initial"
+})
