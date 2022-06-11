@@ -19,7 +19,7 @@ const Stats = () => {
         <Box>
             <Container>
                 <Typography variant='h4' component="h2" marginY={3}>
-                    Global Crypto Stats
+                    Global Crypto Currency Stats
                 </Typography>
                 <Grid container spacing={6}>
                     <Grid item xl={4} md={6} sm={12}>
