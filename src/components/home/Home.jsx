@@ -2,6 +2,7 @@
 import { Box } from '@mui/material'
 import React from 'react'
 import Crypto from './components/Crypto'
+import News from './components/News'
 import Stats from './components/Stats'
 
 const HomeComponent = () => {
@@ -12,6 +13,7 @@ const HomeComponent = () => {
         >
             <Stats />
             <Crypto />
+            <News />
         </Box>
     )
 }
