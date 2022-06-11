@@ -1,46 +1,77 @@
-import { Grid, Typography, Box, Avatar, Paper } from '@mui/material'
+import { Grid, Typography, Box, Avatar, Paper, TextField } from '@mui/material'
 import { styled } from '@mui/system'
 import millify from 'millify'
+import { useEffect, useState } from 'react'
 import { useGetCryptosQuery } from '../../services/cryptoApi'
 
 const CryptoCurrency = ({ simplified }) => {
+    const [searchTerm, setSearchTerm] = useState('')
     const count = simplified ? 10 : 100;
-    const { data: cryptosList, isFetching } = useGetCryptosQuery(count);
+    const { data: cryptosList, isFetching } = useGetCryptosQuery();
+    const [cryptos, setCryptos] = useState([])
+
+    useEffect(() => {
+        setCryptos(cryptosList?.data?.coins)
+        const fileredData = cryptosList?.data?.coins.filter((coin) => coin.name.toLowerCase().includes(searchTerm.toLowerCase()))
+
+        setCryptos(fileredData);
+    }, [cryptosList, searchTerm])
     return (
-        <Grid container spacing={3}>
+        <>
+            {!simplified && <Box
+                sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    maxWidth: "500px",
+                    margin: "0 auto",
+                    marginBottom: "2rem"
+                }}
+            >
+                <TextField
+                    id="outlined-basic"
+                    label="Search"
+                    variant="outlined"
+                    sx={{ width: "100%" }}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+            </Box>}
 
-            {cryptosList?.data?.coins.slice(0, count).map((currency) => {
-                return (
-                    <Grid item xl={3} md={6} sm={12}>
-                        <CyptoBox>
-                            <Box sx={{
-                                display: "flex",
-                                justifyContent: "space-between",
-                                alignItems: "center",
-                                borderBottom: "1px solid #cccccc5a",
-                                paddingBottom: 1,
-                                marginBottom: 2
-                            }}>
-                                <Typography variant='body1' component="h3" sx={{ fontWeight: "bold" }}>{currency.rank}. {currency.name}</Typography>
-                                <Avatar src={currency.iconUrl}></Avatar>
-                            </Box>
-                            <Box >
-                                <Typography variant='body1'>
-                                    Price: {millify(currency.price)}
-                                </Typography >
-                                <Typography variant='body1'>
-                                    Market Cap: {millify(currency.marketCap)}
-                                </Typography>
-                                <Typography variant='body1'>
-                                    Daily Change: {millify(currency.change)} %
-                                </Typography>
-                            </Box>
-                        </CyptoBox>
+            <Grid container spacing={3}>
 
-                    </Grid>
-                )
-            })}
-        </Grid>
+                {cryptos?.slice(0, count).map((currency) => {
+                    return (
+                        <Grid item xl={3} md={6} sm={12}>
+                            <CyptoBox>
+                                <Box sx={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                    alignItems: "center",
+                                    borderBottom: "1px solid #cccccc5a",
+                                    paddingBottom: 1,
+                                    marginBottom: 2
+                                }}>
+                                    <Typography variant='body1' component="h3" sx={{ fontWeight: "bold" }}>{currency.rank}. {currency.name}</Typography>
+                                    <Avatar src={currency.iconUrl}></Avatar>
+                                </Box>
+                                <Box >
+                                    <Typography variant='body1'>
+                                        Price: {millify(currency.price)}
+                                    </Typography >
+                                    <Typography variant='body1'>
+                                        Market Cap: {millify(currency.marketCap)}
+                                    </Typography>
+                                    <Typography variant='body1'>
+                                        Daily Change: {millify(currency.change)} %
+                                    </Typography>
+                                </Box>
+                            </CyptoBox>
+
+                        </Grid>
+                    )
+                })}
+            </Grid>
+        </>
+
     )
 }
 
