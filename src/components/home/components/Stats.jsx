@@ -9,12 +9,13 @@ import ChangeCircleOutlinedIcon from '@mui/icons-material/ChangeCircleOutlined';
 import BrokenImageOutlinedIcon from '@mui/icons-material/BrokenImageOutlined';
 import SurroundSoundOutlinedIcon from '@mui/icons-material/SurroundSoundOutlined';
 import StoreOutlinedIcon from '@mui/icons-material/StoreOutlined';
+import Loader from '../../reusable/Loader'
 
 const Stats = () => {
     const { data, isFetching } = useGetCryptosQuery();
     const globalStats = data?.data?.stats;
 
-    if (isFetching) return 'Loading....'
+    if (isFetching) return <Loader />
     return (
         <Box>
             <Container>
@@ -40,28 +41,6 @@ const Stats = () => {
                                     }}
                                 >
                                     {globalStats.total}
-                                </Typography>
-                            </StatisticBox>
-                        </Paper>
-                    </Grid>
-                    <Grid item xl={4} md={6} sm={12}>
-                        <Paper sx={{ textAlign: "center" }} >
-                            <StatisticBox>
-                                <CurrencyBitcoinOutlinedIcon fontSize='large' sx={{ marginBottom: 1 }} />
-                                <Typography variant='h6' component="h3" gutterBottom
-                                    sx={{
-                                        fontSize: 16,
-                                        fontWeight: 400
-                                    }}
-                                >
-                                    Total Coins
-                                </Typography>
-                                <Typography variant='h6'
-                                    sx={{
-                                        fontSize: 14,
-                                    }}
-                                >
-                                    {globalStats.totalCoins}
                                 </Typography>
                             </StatisticBox>
                         </Paper>

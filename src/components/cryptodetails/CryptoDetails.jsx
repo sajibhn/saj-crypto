@@ -6,6 +6,7 @@ import { useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from "../../servic
 import HTMLReactParser from 'html-react-parser';
 import millify from 'millify';
 import Chart from "./components/Chart";
+import Loader from "../reusable/Loader";
 
 const CryptoDetails = () => {
     const { coinId } = useParams()
@@ -13,13 +14,13 @@ const CryptoDetails = () => {
     const [timePeriod, setTimePeriod] = useState('24h')
     const [isReadMore, setIsReadMore] = useState(true);
     const { data, isFetching } = useGetCryptoDetailsQuery(`${coinId}`)
-    const { data: coinHistory } = useGetCryptoHistoryQuery({ coinId, timePeriod })
+    const { data: coinHistory, isLoading } = useGetCryptoHistoryQuery({ coinId, timePeriod })
     const cryptoDetails = data?.data?.coin;
     const toggleReadMore = () => {
         setIsReadMore(!isReadMore);
     };
 
-    if (isFetching) return 'loadding...'
+    if (isFetching) return <Loader />
     return (
         <Box sx={{ flexGrow: 1, p: 3 }}>
             <Toolbar />
@@ -65,7 +66,7 @@ const CryptoDetails = () => {
                 </Box>
 
                 <Box>
-                    <Chart coinHistory={coinHistory} currentPrice={millify(cryptoDetails.price)} coinName={cryptoDetails.name} />
+                    <Chart coinHistory={coinHistory} currentPrice={millify(cryptoDetails.price)} coinName={cryptoDetails.name} isLoading={isLoading} />
                 </Box>
             </Container>
         </Box >

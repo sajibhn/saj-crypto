@@ -30,11 +30,11 @@ export default function PermanentDrawerLeft() {
                 anchor="left"
             >
                 <List>
-                    <Typography variant='h4' margin={1}>Saj Cryporto</Typography>
+                    <Navigation to="/"><Typography variant='h4' margin={1}>Saj Cryporto</Typography></Navigation>
                 </List>
                 <Divider />
                 <List>
-                    <Navaigation to="/">
+                    <Navigation to="/">
                         <ListItem disablePadding>
                             <ListItemButton>
                                 <ListItemIcon>
@@ -43,9 +43,9 @@ export default function PermanentDrawerLeft() {
                                 <ListItemText primary={"Home"} />
                             </ListItemButton>
                         </ListItem>
-                    </Navaigation>
+                    </Navigation>
 
-                    <Navaigation to="/cryptocurrencies">
+                    <Navigation to="/cryptocurrencies">
                         <ListItem disablePadding>
                             <ListItemButton>
                                 <ListItemIcon>
@@ -54,19 +54,8 @@ export default function PermanentDrawerLeft() {
                                 <ListItemText primary={"Cryptocurrencies"} />
                             </ListItemButton>
                         </ListItem>
-                    </Navaigation>
-                    <Navaigation to="/exchanges">
-                        <ListItem disablePadding>
-                            <ListItemButton>
-                                <ListItemIcon>
-                                    <CurrencyExchange />
-                                </ListItemIcon>
-                                <ListItemText primary={"Exchanges"} />
-                            </ListItemButton>
-                        </ListItem>
-                    </Navaigation>
-
-                    <Navaigation to="/news">
+                    </Navigation>
+                    <Navigation to="/news">
                         <ListItem disablePadding>
                             <ListItemButton>
                                 <ListItemIcon>
@@ -75,7 +64,7 @@ export default function PermanentDrawerLeft() {
                                 <ListItemText primary={"News"} />
                             </ListItemButton>
                         </ListItem>
-                    </Navaigation>
+                    </Navigation>
                 </List>
             </Drawer>
 
@@ -83,6 +72,6 @@ export default function PermanentDrawerLeft() {
     );
 }
 
-const Navaigation = styled(Link)({
+const Navigation = styled(Link)({
     color: "initial"
 })

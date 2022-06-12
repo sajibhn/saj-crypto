@@ -3,11 +3,13 @@ import React from 'react'
 import { Chart as ChartJS, LineElement, PointElement, CategoryScale, LinearScale } from 'chart.js'
 import { Line } from 'react-chartjs-2'
 import { Container } from '@mui/system';
+import Loader from '../../reusable/Loader';
 
 ChartJS.register(LinearScale, CategoryScale, PointElement, LineElement);
 
-const Chart = ({ coinHistory, currentPrice, coinName }) => {
+const Chart = ({ coinHistory, currentPrice, coinName, isLoading }) => {
 
+    if (isLoading) return <Loader />
     const coinPrice = [];
     const coinTimestamp = [];
 

@@ -3,11 +3,13 @@ import { Avatar, Box, ButtonBase, Container, Grid, Paper, Toolbar, Typography } 
 import { styled } from '@mui/system'
 import { useGetCryptoNewsQuery } from '../../services/cryptoNewsApi'
 import Moment from 'react-moment'
+import Loader from './Loader'
 
 const NewsCard = ({ simplified }) => {
-    const { data: cryptoNews } = useGetCryptoNewsQuery()
+    const { data: cryptoNews, isFetching } = useGetCryptoNewsQuery()
     const count = simplified ? 6 : 12;
     const demoImag = 'https://cdn-icons-png.flaticon.com/512/21/21601.png'
+    if (isFetching) return <Loader />
     return (
         <Box>
             <Container>

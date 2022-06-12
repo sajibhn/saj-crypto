@@ -4,6 +4,7 @@ import millify from 'millify'
 import { useEffect, useState } from 'react'
 import { useGetCryptosQuery } from '../../services/cryptoApi'
 import { Link } from "react-router-dom";
+import Loader from './Loader'
 
 const CryptoCurrency = ({ simplified }) => {
     const [searchTerm, setSearchTerm] = useState('')
@@ -17,6 +18,8 @@ const CryptoCurrency = ({ simplified }) => {
 
         setCryptos(fileredData);
     }, [cryptosList, searchTerm])
+
+    if (isFetching) return <Loader />
     return (
         <>
             {!simplified && <Box
