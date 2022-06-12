@@ -23,7 +23,7 @@ const Stats = () => {
                     Global Crypto Currency Stats
                 </Typography>
                 <Grid container spacing={6}>
-                    <Grid item xl={4} md={6} sm={12}>
+                    <Grid item xl={4} md={6} sm={12} xs={12}>
                         <Paper sx={{ textAlign: "center" }} >
                             <StatisticBox>
                                 <CurrencyExchange fontSize='large' sx={{ marginBottom: 1 }} />
@@ -45,7 +45,7 @@ const Stats = () => {
                             </StatisticBox>
                         </Paper>
                     </Grid>
-                    <Grid item xl={4} md={6} sm={12}>
+                    <Grid item xl={4} md={6} sm={12} xs={12}>
                         <Paper sx={{ textAlign: "center" }} >
                             <StatisticBox>
                                 <ChangeCircleOutlinedIcon fontSize='large' sx={{ marginBottom: 1 }} />
@@ -67,7 +67,7 @@ const Stats = () => {
                             </StatisticBox>
                         </Paper>
                     </Grid>
-                    <Grid item xl={4} md={6} sm={12}>
+                    <Grid item xl={4} md={6} sm={12} xs={12}>
                         <Paper sx={{ textAlign: "center" }} >
                             <StatisticBox>
                                 <BrokenImageOutlinedIcon fontSize='large' sx={{ marginBottom: 1 }} />
@@ -89,7 +89,7 @@ const Stats = () => {
                             </StatisticBox>
                         </Paper>
                     </Grid>
-                    <Grid item xl={4} md={6} sm={12}>
+                    <Grid item xl={4} md={6} sm={12} xs={12}>
                         <Paper sx={{ textAlign: "center" }} >
                             <StatisticBox>
                                 <SurroundSoundOutlinedIcon fontSize='large' sx={{ marginBottom: 1 }} />
@@ -111,7 +111,7 @@ const Stats = () => {
                             </StatisticBox>
                         </Paper>
                     </Grid>
-                    <Grid item xl={4} md={6} sm={12}>
+                    <Grid item xl={4} md={6} sm={12} xs={12}>
                         <Paper sx={{ textAlign: "center" }} >
                             <StatisticBox>
                                 <StoreOutlinedIcon fontSize='large' sx={{ marginBottom: 1 }} />

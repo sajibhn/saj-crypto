@@ -36,20 +36,20 @@ const CryptoDetails = () => {
                 </Box>
                 <Toolbar />
                 <CryptoDataBox variant="outlined">
-                    <Grid container justifyContent="center" spacing={2}>
-                        <Grid item xl={4} md={6} sm={1}>
+                    <Grid container spacing={2}>
+                        <Grid item xl={4} md={4} sm={4} xs={12}>
                             <Box sx={{ width: "100%", textAlign: "center" }}>
                                 <Typography variant="body1">{cryptoDetails?.rank}</Typography>
                                 <Typography variant="h6">Rank</Typography>
                             </Box>
                         </Grid>
-                        <Grid item xl={4} md={6} sm={1}>
+                        <Grid item xl={4} md={4} sm={4} xs={12}>
                             <Box sx={{ width: "100%", textAlign: "center" }}>
                                 <Typography variant="body1">{millify(cryptoDetails?.price)}</Typography>
                                 <Typography variant="h6">Current Price</Typography>
                             </Box>
                         </Grid>
-                        <Grid item xl={4} md={6} sm={1}>
+                        <Grid item xl={4} md={4} sm={4} xs={12}>
                             <Box sx={{ width: "100%", textAlign: "center" }}>
                                 <Typography variant="body1">{millify(cryptoDetails?.marketCap)}</Typography>
                                 <Typography variant="h6">Market Cap</Typography>
@@ -58,7 +58,7 @@ const CryptoDetails = () => {
                     </Grid>
                 </CryptoDataBox>
                 <Toolbar />
-                <Box sx={{ display: "flex", alignItem: "center", justifyContent: "center" }}>
+                <Box sx={{ display: "flex", alignItem: "center", justifyContent: "center", flexWrap: "wrap" }}>
                     {time.map((date) => {
                         return <Button variant="outlined" sx={{ margin: "0 10px" }} disableElevation key={date} onClick={() => setTimePeriod(date)}>{date}</Button>
                     })}

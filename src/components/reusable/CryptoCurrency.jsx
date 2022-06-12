@@ -44,7 +44,7 @@ const CryptoCurrency = ({ simplified }) => {
 
                 {cryptos?.slice(0, count).map((currency) => {
                     return (
-                        <Grid item xl={3} md={6} sm={12} key={currency.uuid}>
+                        <Grid item xl={3} md={6} sm={12} xs={12} key={currency.uuid}>
                             <Navigation to={`/crypto/${currency.uuid}`}>
                                 <CyptoBox>
                                     <Box sx={{

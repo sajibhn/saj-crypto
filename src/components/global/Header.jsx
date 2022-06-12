@@ -8,15 +8,21 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import { Article, CurrencyExchange, Home, LocalAtm } from '@mui/icons-material';
+import { Article, Home, LocalAtm } from '@mui/icons-material';
+import Brightness6Icon from '@mui/icons-material/Brightness6';
 import { Link } from "react-router-dom";
 import { styled } from '@mui/system';
+import Switch from '@mui/material/Switch';
+
 
 const drawerWidth = 240;
 
-export default function PermanentDrawerLeft() {
+export default function PermanentDrawerLeft({ mode, setMode }) {
+
     return (
-        <Box sx={{ display: 'flex', maxWidth: '1600px' }}>
+
+        <Box>
+
             <Drawer
                 sx={{
                     width: drawerWidth,
@@ -24,7 +30,7 @@ export default function PermanentDrawerLeft() {
                     '& .MuiDrawer-paper': {
                         width: drawerWidth,
                         boxSizing: 'border-box',
-                    },
+                    }, display: { xs: "none", sm: 'none', md: 'block' }
                 }}
                 variant="permanent"
                 anchor="left"
@@ -34,7 +40,7 @@ export default function PermanentDrawerLeft() {
                 </List>
                 <Divider />
                 <List>
-                    <Navigation to="/">
+                    <Navigation to="/" color={"text.primary"}>
                         <ListItem disablePadding>
                             <ListItemButton>
                                 <ListItemIcon>
@@ -65,6 +71,16 @@ export default function PermanentDrawerLeft() {
                             </ListItemButton>
                         </ListItem>
                     </Navigation>
+
+                    <ListItem disablePadding>
+                        <ListItemButton>
+                            <ListItemIcon>
+                                <Brightness6Icon />
+                            </ListItemIcon>
+                            <Switch onChange={(e) => setMode(mode === 'light' ? 'dark' : 'light')} />
+                        </ListItemButton>
+                    </ListItem>
+
                 </List>
             </Drawer>
 
@@ -72,6 +88,6 @@ export default function PermanentDrawerLeft() {
     );
 }
 
-const Navigation = styled(Link)({
-    color: "initial"
-})
+const Navigation = styled(Link)(({ theme }) => ({
+    color: theme.palette.text.primary
+}));

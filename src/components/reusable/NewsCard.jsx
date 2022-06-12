@@ -15,7 +15,7 @@ const NewsCard = ({ simplified }) => {
             <Container>
                 <Grid container spacing={3}>
                     {cryptoNews?.value.slice(0, count).map((news, i) => (
-                        <Grid item xl={4} md={6} sm={12} key={i}>
+                        <Grid item xl={4} md={6} sm={12} xs={12} key={i}>
 
                             <Navigation href={news.url} target="_blank">
 

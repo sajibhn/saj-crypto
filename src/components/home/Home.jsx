@@ -9,7 +9,7 @@ const HomeComponent = () => {
     return (
         <Box
             component="main"
-            sx={{ flexGrow: 1, p: 3 }}
+            sx={{ flexGrow: 1 }}
         >
             <Stats />
             <Crypto />
