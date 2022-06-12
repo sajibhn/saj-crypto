@@ -1,21 +1,25 @@
-import { Box, Container, Grid, Paper, Toolbar, Typography } from "@mui/material";
+import { Box, Button, Container, Grid, Paper, Toolbar, Typography } from "@mui/material";
 import { styled } from "@mui/system";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useGetCryptoDetailsQuery } from "../../services/cryptoApi";
+import { useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from "../../services/cryptoApi";
 import HTMLReactParser from 'html-react-parser';
 import millify from 'millify';
+import Chart from "./components/Chart";
 
 const CryptoDetails = () => {
     const { coinId } = useParams()
-    const [timePeriod, setTimePeriod] = useState('7d')
-    const { data, isFetching } = useGetCryptoDetailsQuery(coinId)
-    const cryptoDetails = data?.data?.coin;
+    const time = ['3h', '24h', '7d', '30d', '1y', '3m', '3y', '5y'];
+    const [timePeriod, setTimePeriod] = useState('24h')
     const [isReadMore, setIsReadMore] = useState(true);
+    const { data, isFetching } = useGetCryptoDetailsQuery(`${coinId}`)
+    const { data: coinHistory } = useGetCryptoHistoryQuery({ coinId, timePeriod })
+    const cryptoDetails = data?.data?.coin;
     const toggleReadMore = () => {
         setIsReadMore(!isReadMore);
     };
 
+    if (isFetching) return 'loadding...'
     return (
         <Box sx={{ flexGrow: 1, p: 3 }}>
             <Toolbar />
@@ -24,9 +28,9 @@ const CryptoDetails = () => {
                 <Box sx={{ maxWidth: "750px", margin: "0 auto", textAlign: "center" }}>
                     <Img src={cryptoDetails?.iconUrl} />
                     <Typography variant="h5" component="h2" marginY={3}>{cryptoDetails?.name}</Typography>
-                    <Typography variant="body1">
+                    <Typography variant="body1" component="div">
                         {HTMLReactParser(`${isReadMore ? cryptoDetails.description.slice(0, 200) : cryptoDetails.description}`)}
-                        <span onClick={toggleReadMore} className="read-or-hide">{isReadMore ? "...read more" : " show less"}</span>
+                        <span style={{ cursor: "pointer" }} onClick={toggleReadMore} className="read-or-hide">{isReadMore ? "...read more" : " show less"}</span>
                     </Typography>
                 </Box>
                 <Toolbar />
@@ -52,6 +56,17 @@ const CryptoDetails = () => {
                         </Grid>
                     </Grid>
                 </CryptoDataBox>
+                <Toolbar />
+                <Box sx={{ display: "flex", alignItem: "center", justifyContent: "center" }}>
+                    {time.map((date) => {
+                        return <Button variant="outlined" sx={{ margin: "0 10px" }} disableElevation key={date} onClick={() => setTimePeriod(date)}>{date}</Button>
+                    })}
+
+                </Box>
+
+                <Box>
+                    <Chart coinHistory={coinHistory} currentPrice={millify(cryptoDetails.price)} coinName={cryptoDetails.name} />
+                </Box>
             </Container>
         </Box >
     );
