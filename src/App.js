@@ -8,7 +8,6 @@ import News from './components/News/News'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import MobileMenu from './components/global/MobileMenu'
 import Footer from './components/global/Footer'
-import A from './components/a/A'
 
 const App = () => {
   const [mode, setMode] = useState('light')
@@ -40,7 +39,6 @@ const App = () => {
           </Box>
         </ThemeProvider>
       </BrowserRouter>
-
     </>
   )
 }

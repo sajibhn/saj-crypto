@@ -5,6 +5,7 @@ const coinGeckoApiHeaders = {
     'X-RapidAPI-Host': 'coingecko.p.rapidapi.com'
 }
 
+
 const baseUrl = 'https://coingecko.p.rapidapi.com/'
 
 const createRequest = (url) => ({ url, headers: coinGeckoApiHeaders })
@@ -16,7 +17,13 @@ export const coinGeckoApi = createApi({
         getAllCoins: builder.query({
             query: (simplified) => createRequest(`/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${simplified}&page=1&sparkline=false`)
         }),
+        getSingleCoin: builder.query({
+            query: (coinId) => createRequest(`/coins/${coinId}`)
+        }),
+        getCoinHistory: builder.query({
+            query: ({ coinId, timePeriod }) => createRequest(`/coins/${coinId}/market_chart?vs_currency=usd&days=${timePeriod}`)
+        }),
     })
 })
 
-export const { useGetAllCoinsQuery } = coinGeckoApi
+export const { useGetAllCoinsQuery, useGetSingleCoinQuery, useGetCoinHistoryQuery } = coinGeckoApi

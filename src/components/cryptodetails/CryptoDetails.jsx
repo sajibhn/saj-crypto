@@ -2,36 +2,55 @@ import { Box, Button, Container, Grid, Paper, Toolbar, Typography } from "@mui/m
 import { styled } from "@mui/system";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from "../../services/cryptoApi";
 import HTMLReactParser from 'html-react-parser';
 import millify from 'millify';
-import Chart from "./components/Chart";
 import Loader from "../reusable/Loader";
+import { useGetCoinHistoryQuery, useGetSingleCoinQuery } from "../../services/coinGeckoApi";
+import Chart from "../cryptodetails/components/Chart";
+
+const time = [
+    {
+        label: "24 hours",
+        value: 1
+    },
+    {
+        label: "30 Days",
+        value: 30
+    },
+    {
+        label: "3 Months",
+        value: 190
+    },
+    {
+        label: "1 Year",
+        value: 365
+    }
+]
 
 const CryptoDetails = () => {
     const { coinId } = useParams()
-    const time = ['3h', '24h', '7d', '30d', '1y', '3m', '3y', '5y'];
-    const [timePeriod, setTimePeriod] = useState('24h')
     const [isReadMore, setIsReadMore] = useState(true);
-    const { data, isFetching } = useGetCryptoDetailsQuery(`${coinId}`)
-    const { data: coinHistory, isLoading } = useGetCryptoHistoryQuery({ coinId, timePeriod })
-    const cryptoDetails = data?.data?.coin;
+    const [timePeriod, setTimePeriod] = useState("365")
+    const { data, error, isFetching } = useGetSingleCoinQuery(coinId)
+    const { data: coinHistory, isLoading } = useGetCoinHistoryQuery({ coinId, timePeriod })
     const toggleReadMore = () => {
         setIsReadMore(!isReadMore);
     };
-
+    console.log(coinHistory)
+    if (isLoading) return <Loader />
     if (isFetching) return <Loader />
+    if (error) return `${error.status} ${JSON.stringify(error.data)}`;
     return (
         <Box sx={{ flexGrow: 1, p: 3 }}>
             <Toolbar />
 
             <Container>
                 <Box sx={{ maxWidth: "750px", margin: "0 auto", textAlign: "center" }}>
-                    <Img src={cryptoDetails?.iconUrl} />
-                    <Typography variant="h5" component="h2" marginY={3}>{cryptoDetails?.name}</Typography>
+                    <Img src={data.image.large} />
+                    <Typography variant="h5" component="h2" marginY={3}>{data.name}</Typography>
                     <Typography variant="body1" component="div">
-                        {HTMLReactParser(`${isReadMore ? cryptoDetails.description.slice(0, 200) : cryptoDetails.description}`)}
-                        <span style={{ cursor: "pointer" }} onClick={toggleReadMore} className="read-or-hide">{isReadMore ? "...read more" : " show less"}</span>
+                        {HTMLReactParser(`${isReadMore ? data.description.en.slice(0, 200) : data.description.en}`)}
+                        <span style={{ cursor: "pointer", color: "blue" }} onClick={toggleReadMore} className="read-or-hide">{isReadMore ? "...read more" : " show less"}</span>
                     </Typography>
                 </Box>
                 <Toolbar />
@@ -39,19 +58,19 @@ const CryptoDetails = () => {
                     <Grid container spacing={2}>
                         <Grid item xl={4} md={4} sm={4} xs={12}>
                             <Box sx={{ width: "100%", textAlign: "center" }}>
-                                <Typography variant="body1">{cryptoDetails?.rank}</Typography>
+                                <Typography variant="body1">{data.market_cap_rank}</Typography>
                                 <Typography variant="h6">Rank</Typography>
                             </Box>
                         </Grid>
                         <Grid item xl={4} md={4} sm={4} xs={12}>
                             <Box sx={{ width: "100%", textAlign: "center" }}>
-                                <Typography variant="body1">{millify(cryptoDetails?.price)}</Typography>
+                                <Typography variant="body1">{millify(data.market_data.current_price.usd)} USD</Typography>
                                 <Typography variant="h6">Current Price</Typography>
                             </Box>
                         </Grid>
                         <Grid item xl={4} md={4} sm={4} xs={12}>
                             <Box sx={{ width: "100%", textAlign: "center" }}>
-                                <Typography variant="body1">{millify(cryptoDetails?.marketCap)}</Typography>
+                                <Typography variant="body1">{millify(data.market_data.market_cap.usd)}</Typography>
                                 <Typography variant="h6">Market Cap</Typography>
                             </Box>
                         </Grid>
@@ -60,14 +79,15 @@ const CryptoDetails = () => {
                 <Toolbar />
                 <Box sx={{ display: "flex", alignItem: "center", justifyContent: "center", flexWrap: "wrap" }}>
                     {time.map((date) => {
-                        return <Button variant="outlined" sx={{ margin: "10px" }} disableElevation key={date} onClick={() => setTimePeriod(date)}>{date}</Button>
+                        return <Button variant="outlined" sx={{ margin: "10px" }} disableElevation key={date.value} onClick={() => setTimePeriod(`${date.value}`)}>{date.label}</Button>
                     })}
 
                 </Box>
 
                 <Box>
-                    <Chart coinHistory={coinHistory} currentPrice={millify(cryptoDetails.price)} coinName={cryptoDetails.name} isLoading={isLoading} />
+                    <Chart coinHistory={coinHistory} timePeriod={timePeriod} coinName={data.name} currentPrice={data.market_data.current_price.usd} />
                 </Box>
+
             </Container>
         </Box >
     );
