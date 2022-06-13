@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import Loader from '../reusable/Loader'
 import { useGetAllCoinsQuery } from '../../services/coinGeckoApi'
 
-const CryptoCurrency = ({ simplified }) => {
+const A = ({ simplified }) => {
     const [searchTerm, setSearchTerm] = useState('')
     const [cryptos, setCryptos] = useState([])
     const count = simplified ? 10 : 50;
@@ -82,7 +82,7 @@ const CryptoCurrency = ({ simplified }) => {
     )
 }
 
-export default CryptoCurrency
+export default A
 
 const CyptoBox = styled(Paper)({
     padding: "30px 20px"
