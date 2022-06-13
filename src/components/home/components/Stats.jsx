@@ -4,7 +4,6 @@ import { Container, styled } from '@mui/system'
 import React from 'react'
 import { useGetCryptosQuery } from '../../../services/cryptoApi'
 import millify from 'millify'
-import CurrencyBitcoinOutlinedIcon from '@mui/icons-material/CurrencyBitcoinOutlined';
 import ChangeCircleOutlinedIcon from '@mui/icons-material/ChangeCircleOutlined';
 import BrokenImageOutlinedIcon from '@mui/icons-material/BrokenImageOutlined';
 import SurroundSoundOutlinedIcon from '@mui/icons-material/SurroundSoundOutlined';

@@ -24,7 +24,7 @@ const App = () => {
             <MobileMenu mode={mode} setMode={setMode} />
           </Box>
           <Box bgcolor={"background.default"} color={"text.primary"} sx={{
-            display: "flex",
+            display: { md: "flex" },
           }}>
             <Header mode={mode} setMode={setMode} />
             <Routes>
