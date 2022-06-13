@@ -3,9 +3,9 @@ import React from 'react'
 
 const Footer = () => {
     return (
-        <Container>
+        <Container >
             <Box textAlign="center" padding={8}>
-                <Typography variant='body1'>Saj Crypto || copyright @ {new Date().getFullYear()}</Typography>
+                <Typography variant='body2' sx={{ marginLeft: { md: " 240px" }, fontWeight: 300 }}>Saj Crypto || Copyright @ {new Date().getFullYear()}</Typography>
             </Box>
         </Container>
     )

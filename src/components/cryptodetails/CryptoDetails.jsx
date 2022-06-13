@@ -60,7 +60,7 @@ const CryptoDetails = () => {
                 <Toolbar />
                 <Box sx={{ display: "flex", alignItem: "center", justifyContent: "center", flexWrap: "wrap" }}>
                     {time.map((date) => {
-                        return <Button variant="outlined" sx={{ margin: "0 10px" }} disableElevation key={date} onClick={() => setTimePeriod(date)}>{date}</Button>
+                        return <Button variant="outlined" sx={{ margin: "10px" }} disableElevation key={date} onClick={() => setTimePeriod(date)}>{date}</Button>
                     })}
 
                 </Box>
