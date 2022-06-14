@@ -99,7 +99,7 @@ const MobileMenu = ({ mode, setMode }) => {
                     </Popper>
                 </div>
             </Stack>
-            <Typography variant='h4'>Saj Crypto</Typography>
+            <Logo to="/"><Typography variant='h5' margin={1}>Saj Crypto</Typography></Logo>
         </Box >
     )
 }
@@ -109,5 +109,9 @@ export default MobileMenu
 const Navigation = styled(Link)(({ theme }) => ({
     color: theme.palette.text.primary,
     width: "100%",
+    fontSize: "1.2rem"
+}));
+const Logo = styled(Link)(({ theme }) => ({
+    color: theme.palette.text.primary,
     fontSize: "1.2rem"
 }));

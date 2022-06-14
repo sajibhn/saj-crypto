@@ -37,7 +37,7 @@ export default function PermanentDrawerLeft({ mode, setMode }) {
                 anchor="left"
             >
                 <List>
-                    <Navigation to="/"><Typography variant='h4' margin={1}>Saj Cryporto</Typography></Navigation>
+                    <Navigation to="/"><Typography variant='h4' margin={1}>Saj Crypto</Typography></Navigation>
                 </List>
                 <Divider />
                 <List>
