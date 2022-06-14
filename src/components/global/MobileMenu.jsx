@@ -10,7 +10,7 @@ import Stack from '@mui/material/Stack';
 import MenuIcon from '@mui/icons-material/Menu';
 import Switch from '@mui/material/Switch';
 import { styled } from '@mui/system';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { Link } from "react-router-dom";
 
 const MobileMenu = ({ mode, setMode }) => {
@@ -48,7 +48,7 @@ const MobileMenu = ({ mode, setMode }) => {
         prevOpen.current = open;
     }, [open]);
     return (
-        <Box sx={{ postion: "relative", zIndex: 1000 }}>
+        <Box sx={{ postion: "relative", zIndex: 1000, display: "flex", justifyContent: "space-between", padding: ".5rem" }}>
             <Stack direction="row" spacing={2} sx={{ display: { xs: "block", sm: 'block', md: 'none' } }}>
 
                 <div>
@@ -78,7 +78,7 @@ const MobileMenu = ({ mode, setMode }) => {
                                         placement === 'bottom-start' ? 'left top' : 'left bottom',
                                 }}
                             >
-                                <Paper>
+                                <Paper variant='outlined'>
                                     <ClickAwayListener onClickAway={handleClose}>
                                         <MenuList
                                             autoFocusItem={open}
@@ -99,6 +99,7 @@ const MobileMenu = ({ mode, setMode }) => {
                     </Popper>
                 </div>
             </Stack>
+            <Typography variant='h4'>Saj Crypto</Typography>
         </Box >
     )
 }
@@ -107,5 +108,6 @@ export default MobileMenu
 
 const Navigation = styled(Link)(({ theme }) => ({
     color: theme.palette.text.primary,
-    width: "100%"
+    width: "100%",
+    fontSize: "1.2rem"
 }));
