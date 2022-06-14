@@ -9,10 +9,12 @@ import Paper from '@mui/material/Paper';
 import { useSelector, useDispatch } from 'react-redux'
 import { remove } from '../../services/favoriteSlice'
 import { Box, Container } from '@mui/system';
-import { Delete } from '@mui/icons-material';
+import { Delete, Visibility } from '@mui/icons-material';
 import { useGetAllCoinsQuery } from '../../services/coinGeckoApi';
 import Loader from '../reusable/Loader';
 import Empty from '../global/Empty';
+import { Link } from "react-router-dom";
+import { styled } from '@mui/system'
 
 const Favorite = () => {
     const coins = useSelector((state) => state.coins)
@@ -33,6 +35,7 @@ const Favorite = () => {
                             <TableHead>
                                 <TableRow>
                                     <TableCell >Coin Name</TableCell>
+                                    <TableCell align="right">View</TableCell>
                                     <TableCell align="right">Price</TableCell>
                                     <TableCell align="right">Delete</TableCell>
                                 </TableRow>
@@ -45,8 +48,10 @@ const Favorite = () => {
                                         return (
                                             <TableRow key={coin.id}>
                                                 <TableCell >{coin.name}</TableCell>
-                                                <TableCell align="right">{coin.current_price}</TableCell>
+                                                <TableCell align="right" sx={{ cursor: "pointer" }}><Navigation to={`/crypto/${coin.id}`}><Visibility /></Navigation></TableCell>
+                                                <TableCell align="right">$ {coin.current_price}</TableCell>
                                                 <TableCell align="right" sx={{ cursor: "pointer" }} onClick={() => dispatch(remove(coin.id))}><Delete /></TableCell>
+
                                             </TableRow>
                                         )
                                 })}
@@ -63,3 +68,6 @@ const Favorite = () => {
 
 export default Favorite
 
+const Navigation = styled(Link)(({ theme }) => ({
+    color: theme.palette.text.primary
+}));
