@@ -7,6 +7,8 @@ import millify from 'millify';
 import Loader from "../reusable/Loader";
 import { useGetCoinHistoryQuery, useGetSingleCoinQuery } from "../../services/coinGeckoApi";
 import Chart from "../cryptodetails/components/Chart";
+import { useSelector, useDispatch } from "react-redux";
+import { add, remove } from "../../services/favoriteSlice";
 
 const time = [
     {
@@ -36,7 +38,9 @@ const CryptoDetails = () => {
     const toggleReadMore = () => {
         setIsReadMore(!isReadMore);
     };
-    console.log(coinHistory)
+    const dispatch = useDispatch()
+    const coins = useSelector((state) => state.coins.coins);
+    const inFavorite = coins.coins.includes(coinId)
     if (isLoading) return <Loader />
     if (isFetching) return <Loader />
     if (error) return `${error.status} ${JSON.stringify(error.data)}`;
@@ -52,6 +56,10 @@ const CryptoDetails = () => {
                         {HTMLReactParser(`${isReadMore ? data.description.en.slice(0, 200) : data.description.en}`)}
                         <span style={{ cursor: "pointer", color: "blue" }} onClick={toggleReadMore} className="read-or-hide">{isReadMore ? "...read more" : " show less"}</span>
                     </Typography>
+                </Box>
+                <Toolbar />
+                <Box display="flex" justifyContent="center">
+                    <Button variant="contained" onClick={() => inFavorite ? dispatch(remove(coinId)) : dispatch(add(coinId))}>{inFavorite ? "Remove from Favorite" : 'Add To Favorite'}</Button>
                 </Box>
                 <Toolbar />
                 <CryptoDataBox variant="outlined">

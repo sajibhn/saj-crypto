@@ -10,6 +10,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import { Article, Home, LocalAtm } from '@mui/icons-material';
 import Brightness6Icon from '@mui/icons-material/Brightness6';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { Link } from "react-router-dom";
 import { styled } from '@mui/system';
 import Switch from '@mui/material/Switch';
@@ -68,6 +69,16 @@ export default function PermanentDrawerLeft({ mode, setMode }) {
                                     <Article />
                                 </ListItemIcon>
                                 <ListItemText primary={"News"} />
+                            </ListItemButton>
+                        </ListItem>
+                    </Navigation>
+                    <Navigation to="/favorite">
+                        <ListItem disablePadding>
+                            <ListItemButton>
+                                <ListItemIcon>
+                                    <FavoriteBorderIcon />
+                                </ListItemIcon>
+                                <ListItemText primary={"Favorite"} />
                             </ListItemButton>
                         </ListItem>
                     </Navigation>
