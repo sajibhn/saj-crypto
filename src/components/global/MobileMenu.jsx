@@ -89,6 +89,7 @@ const MobileMenu = ({ mode, setMode }) => {
                                             <MenuItem onClick={handleClose}><Navigation to="/">Home</Navigation></MenuItem>
                                             <MenuItem onClick={handleClose}><Navigation to="/cryptocurrencies">Cryptocurrencies</Navigation></MenuItem>
                                             <MenuItem onClick={handleClose}><Navigation to="/news">News</Navigation></MenuItem>
+                                            <MenuItem onClick={handleClose}><Navigation to="/favorite">Favorite</Navigation></MenuItem>
                                             <MenuItem ><Switch onChange={(e) => setMode(mode === 'light' ? 'dark' : 'light')} /></MenuItem>
                                         </MenuList>
                                     </ClickAwayListener>

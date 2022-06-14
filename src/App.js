@@ -8,6 +8,7 @@ import News from './components/News/News'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import MobileMenu from './components/global/MobileMenu'
 import Footer from './components/global/Footer'
+import Favorite from './components/favorite/Favorite'
 
 const App = () => {
   const [mode, setMode] = useState('light')
@@ -28,10 +29,11 @@ const App = () => {
           }}>
             <Header mode={mode} setMode={setMode} />
             <Routes>
-              <Route path="/crypto/:coinId" element={<CryptoDetails />} />
               <Route path="/" element={<HomeComponent />} />
               <Route path="/cryptocurrencies" element={<CryptoCurrencies />} />
               <Route path="/news" element={<News />} />
+              <Route path="/favorite" element={<Favorite />} />
+              <Route path="/crypto/:coinId" element={<CryptoDetails />} />
             </Routes>
           </Box>
           <Box bgcolor={"background.default"} color={"text.primary"}>
