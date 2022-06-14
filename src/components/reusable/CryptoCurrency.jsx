@@ -1,23 +1,28 @@
-import { Grid, Typography, Box, Avatar, Paper, TextField } from '@mui/material'
+import { Grid, Typography, Box, Avatar, Paper, TextField, Pagination, Toolbar, sliderClasses } from '@mui/material'
 import { styled } from '@mui/system'
 import millify from 'millify'
 import { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
 import Loader from '../reusable/Loader'
 import { useGetAllCoinsQuery } from '../../services/coinGeckoApi'
+import Empty from '../global/Empty'
 
 const CryptoCurrency = ({ simplified }) => {
     const [searchTerm, setSearchTerm] = useState('')
     const [cryptos, setCryptos] = useState([])
+    const [page, setPage] = useState(1)
     const count = simplified ? 10 : 50;
     const { data: cryptosList, error, isFetching } = useGetAllCoinsQuery(count)
 
     useEffect(() => {
+
         setCryptos(cryptosList)
         const fileredData = cryptosList?.filter((coin) => coin.name.toLowerCase().includes(searchTerm.toLowerCase()))
 
         setCryptos(fileredData);
+
     }, [cryptosList, searchTerm])
+
 
     if (isFetching) return <Loader />;
     if (error) return `${error.status} ${JSON.stringify(error.data)}`;
@@ -36,6 +41,7 @@ const CryptoCurrency = ({ simplified }) => {
                     id="outlined-basic"
                     label="Search"
                     variant="outlined"
+                    autoComplete='off'
                     sx={{ width: "100%" }}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -43,7 +49,7 @@ const CryptoCurrency = ({ simplified }) => {
 
             <Grid container spacing={3}>
 
-                {cryptos?.map((currency) => {
+                {cryptos?.slice((page - 1) * 10, (page - 1) * 10 + 10).map((currency) => {
                     const { id, market_cap_rank, name, image, current_price, market_cap, price_change_percentage_24h } = currency
                     return (
                         <Grid item xl={3} md={6} sm={12} xs={12} key={id}>
@@ -76,7 +82,22 @@ const CryptoCurrency = ({ simplified }) => {
                         </Grid>
                     )
                 })}
+
+
             </Grid>
+            {!simplified && (
+                <>
+                    <Toolbar />
+                    <Box sx={{ display: "flex", justifyContent: "center" }}>
+                        <Pagination variant="outlined" color="primary" count={
+                            (cryptosList.length / 10).toFixed(0)
+                        } onChange={(_, value) => {
+                            setPage(value);
+                            window.scroll(0, 450)
+                        }} />
+                    </Box>
+                </>
+            )}
         </>
 
     )
