@@ -18,8 +18,10 @@ const Favorite = () => {
     const coins = useSelector((state) => state.coins)
     const dispatch = useDispatch()
     const { data: allCoins, isFetching } = useGetAllCoinsQuery(50)
+
+    const storedCoins = coins.coins.coins
     if (isFetching) return <Loader />
-    if (!coins.length) return <Empty />
+    if (!storedCoins.length) return <Empty />
     return (
         <>
 
@@ -39,7 +41,7 @@ const Favorite = () => {
                             <TableBody>
 
                                 {allCoins.map((coin) => {
-                                    if (coins?.find((item) => item.includes(coin.id)))
+                                    if (storedCoins?.find((item) => item.includes(coin.id)))
                                         return (
                                             <TableRow key={coin.id}>
                                                 <TableCell >{coin.name}</TableCell>

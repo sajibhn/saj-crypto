@@ -1,17 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = []
+const initialState = {
+    coins: []
+}
 
 export const favoriteSlice = createSlice({
     name: 'coins',
     initialState,
     reducers: {
 
-        add(state, { payload }) {
-            state.push(payload)
+        add: (state, action) => {
+            state.coins.push(action.payload);
         },
-        remove(state, { payload }) {
-            return state.filter((coin) => coin !== payload)
+        remove: (state, action) => {
+            const updatedCoins = state.coins.filter((coin) => coin !== action.payload);
+            state.coins = updatedCoins
         }
     },
 })

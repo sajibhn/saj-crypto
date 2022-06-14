@@ -39,8 +39,8 @@ const CryptoDetails = () => {
         setIsReadMore(!isReadMore);
     };
     const dispatch = useDispatch()
-    const coins = useSelector((state) => state.coins)
-    const inFavorite = coins?.find((item) => item.includes(coinId))
+    const coins = useSelector((state) => state.coins.coins);
+    const inFavorite = coins.coins.includes(coinId)
     if (isLoading) return <Loader />
     if (isFetching) return <Loader />
     if (error) return `${error.status} ${JSON.stringify(error.data)}`;
