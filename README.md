@@ -16,6 +16,7 @@ I have developed this website using React JS and Material UI. To create this pro
 - Crypto API(coingecko, coinranking, bing news search) from Rapid API - [Link](https://rapidapi.com/)
 - Redux Persist - [Link](https://www.npmjs.com/package/redux-persist)
 - React router - [Link](https://reactrouter.com/docs/en/v6/getting-started/installation)
+- React Toastify - [Link](https://www.npmjs.com/package/react-toastify)
 
 ## Features
 
