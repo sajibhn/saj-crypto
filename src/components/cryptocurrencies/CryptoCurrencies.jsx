@@ -6,7 +6,7 @@ const CryptoCurrencies = () => {
     return (
 
         <Box component="main"
-            sx={{ flexGrow: 1, p: 3 }}
+            sx={{ flexGrow: 1, p: 3, minHeight: "100vh" }}
         >
             <Toolbar />
             <Container>

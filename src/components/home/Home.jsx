@@ -9,7 +9,7 @@ const HomeComponent = () => {
     return (
         <Box
             component="main"
-            sx={{ flexGrow: 1 }}
+            sx={{ flexGrow: 1, minHeight: "100vh" }}
         >
             <Stats />
             <Crypto />

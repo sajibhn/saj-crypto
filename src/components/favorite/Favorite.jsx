@@ -48,7 +48,7 @@ const Favorite = () => {
                                         return (
                                             <TableRow key={coin.id}>
                                                 <TableCell >{coin.name}</TableCell>
-                                                <TableCell align="right" sx={{ cursor: "pointer" }}><Navigation to={`/crypto/${coin.id}`}><Visibility sx={{ "&:hover": { color: "blue" } }} /></Navigation></TableCell>
+                                                <TableCell align="right" sx={{ cursor: "pointer" }}><Navigation to={`/crypto/${coin.id}`}><Visibility sx={{ "&:hover": { color: "cornflowerblue" } }} /></Navigation></TableCell>
                                                 <TableCell align="right">$ {coin.current_price}</TableCell>
                                                 <TableCell align="right" sx={{ cursor: "pointer" }} onClick={() => dispatch(remove(coin.id))}><Delete sx={{ "&:hover": { color: "crimson" } }} /></TableCell>
 

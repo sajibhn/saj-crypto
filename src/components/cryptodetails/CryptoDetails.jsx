@@ -45,7 +45,7 @@ const CryptoDetails = () => {
     if (isFetching) return <Loader />
     if (error) return `${error.status} ${JSON.stringify(error.data)}`;
     return (
-        <Box sx={{ flexGrow: 1, p: 3 }}>
+        <Box sx={{ flexGrow: 1, p: 3, minHeight: "100vh" }}>
             <Toolbar />
 
             <Container>
@@ -54,7 +54,7 @@ const CryptoDetails = () => {
                     <Typography variant="h5" component="h2" marginY={3}>{data.name}</Typography>
                     <Typography variant="body1" component="div">
                         {HTMLReactParser(`${isReadMore ? data.description.en.slice(0, 200) : data.description.en}`)}
-                        <span style={{ cursor: "pointer", color: "blue" }} onClick={toggleReadMore} className="read-or-hide">{isReadMore ? "...read more" : " show less"}</span>
+                        <span style={{ cursor: "pointer", color: "cornflowerblue" }} onClick={toggleReadMore} >{isReadMore ? "...read more" : " ...show less"}</span>
                     </Typography>
                 </Box>
                 <Toolbar />
