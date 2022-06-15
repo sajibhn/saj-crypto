@@ -1,5 +1,5 @@
 import React from 'react'
-import { Avatar, Box, ButtonBase, Container, Grid, Paper, Toolbar, Typography } from '@mui/material'
+import { Avatar, Box, ButtonBase, Container, Grid, Paper, Typography } from '@mui/material'
 import { styled } from '@mui/system'
 import { useGetCryptoNewsQuery } from '../../services/cryptoNewsApi'
 import Moment from 'react-moment'

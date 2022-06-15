@@ -9,6 +9,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import MobileMenu from './components/global/MobileMenu'
 import Footer from './components/global/Footer'
 import Favorite from './components/favorite/Favorite'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const App = () => {
   const [mode, setMode] = useState('light')
@@ -20,6 +22,7 @@ const App = () => {
   return (
     <>
       <BrowserRouter>
+        <ToastContainer />
         <ThemeProvider theme={darkTheme}>
           <Box bgcolor={"background.default"}>
             <MobileMenu mode={mode} setMode={setMode} />

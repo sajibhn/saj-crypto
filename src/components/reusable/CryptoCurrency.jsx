@@ -1,11 +1,10 @@
-import { Grid, Typography, Box, Avatar, Paper, TextField, Pagination, Toolbar, sliderClasses } from '@mui/material'
+import { Grid, Typography, Box, Avatar, Paper, TextField, Pagination, Toolbar } from '@mui/material'
 import { styled } from '@mui/system'
 import millify from 'millify'
 import { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
 import Loader from '../reusable/Loader'
 import { useGetAllCoinsQuery } from '../../services/coinGeckoApi'
-import Empty from '../global/Empty'
 
 const CryptoCurrency = ({ simplified }) => {
     const [searchTerm, setSearchTerm] = useState('')
