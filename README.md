@@ -1,4 +1,4 @@
-# Saj Crypto  - An Crypto Currency Info Webiste
+# Saj Crypto - An Crypto Currency Info Webiste
 
 I have developed this website using React JS and Material UI. To create this project, I have taken inspiration from various themes and templates.
 
@@ -7,12 +7,16 @@ I have developed this website using React JS and Material UI. To create this pro
 - Solution URL: [https://github.com/sajibhn/saj-arc](https://github.com/sajibhn/saj-crypto)
 - Live Site URL: [https://saj-arc.netlify.app/](https://saj-crypto.netlify.app/)
 
-## Technologies 
+## Live Preview
+
+![demo](demo/demo.gif)
+
+## Technologies
 
 - React JS
 - Material UI - [Link](https://mui.com/)
 - Redux toolkit - [Link](https://redux-toolkit.js.org/)
-- RTK Query - [Link](https://redux-toolkit.js.org/) 
+- RTK Query - [Link](https://redux-toolkit.js.org/)
 - Crypto API(coingecko, coinranking, bing news search) from Rapid API - [Link](https://rapidapi.com/)
 - Redux Persist - [Link](https://www.npmjs.com/package/redux-persist)
 - React router - [Link](https://reactrouter.com/docs/en/v6/getting-started/installation)
@@ -27,7 +31,6 @@ I have developed this website using React JS and Material UI. To create this pro
 - Add favorite currency in the "favorite" page
 - Mobile responsive
 
-
 ## What I learned
 
 - I learned about React JS components, JSX, state management
@@ -38,8 +41,8 @@ I have developed this website using React JS and Material UI. To create this pro
 
 ## Author
 
- - Sajib Hossain - [twitter](https://twitter.com/sajib_hsn)
- - Sajib Hossain - [Linked in](https://www.linkedin.com/in/sajib-hossain-17929b225/)
+- Sajib Hossain - [twitter](https://twitter.com/sajib_hsn)
+- Sajib Hossain - [Linked in](https://www.linkedin.com/in/sajib-hossain-17929b225/)
 
 # Getting Started with Create React App
 
