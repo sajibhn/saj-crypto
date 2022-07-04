@@ -1,6 +1,10 @@
 # Saj Crypto - An Crypto Currency Info Webiste
 
-I have developed this website using React JS and Material UI. To create this project, I have taken inspiration from various themes and templates.
+A cryptocurrency website that shows information and news about cryptocurrencies. <br>
+I have added functionality where users can mark their favorite currency to their favorite page  <br>
+and visit them any time.I have used React JS and Material UI to build the UI, and I have also used  <br>
+Redux to manage states and RTK Query to fetch the data from CoingGecko and Bing news search API.
+
 
 ## Links
 
