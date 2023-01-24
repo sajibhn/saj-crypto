@@ -9,7 +9,7 @@ Redux to manage states and RTK Query to fetch the data from CoingGecko and Bing 
 ## Links
 
 - Solution URL: [https://github.com/sajibhn/saj-arc](https://github.com/sajibhn/saj-crypto)
-- Live Site URL: [https://saj-arc.netlify.app/](https://saj-crypto.netlify.app/)
+- Demo URL: [https://youtu.be/6841ZpSNXVs](https://youtu.be/6841ZpSNXVs)
 
 ## Live Preview
 
